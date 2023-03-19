@@ -33,7 +33,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
           return response.status === 200 && !result.isError;
         },
       }),
-      keepUnusedDataFor: 5,
+      // keepUnusedDataFor: 5,
       transformResponse: (responseData: NoteResponseType[]) => {
         const loadedNotes = responseData.map((note: NoteResponseType) => {
           note.id = note._id;

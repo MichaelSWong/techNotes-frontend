@@ -42,7 +42,7 @@ const NotesList = () => {
           <th scope='col' className='table__th note__title'>
             Title
           </th>
-          <th scope='col' className='table__th note__username'>
+          <th scope='col' className='table__th note__userName'>
             Owner
           </th>
           <th scope='col' className='table__th note__edit'>

@@ -228,7 +228,7 @@ tr {
 
 .note__created,
 .note__updated,
-.note__username {
+.note__userName {
   display: none;
 }
 
@@ -356,7 +356,7 @@ tr {
 
   .note__created,
   .note__updated,
-  .note__username {
+  .note__userName {
     display: block;
   }
 

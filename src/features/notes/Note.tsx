@@ -37,7 +37,7 @@ const Note = ({ noteId }: NoteProps) => {
         <td className='table__cell note__created'>{created}</td>
         <td className='table__cell note__updated'>{updated}</td>
         <td className='table__cell note__title'>{note.title}</td>
-        <td className='table__cell note__username'>{note.userName}</td>
+        <td className='table__cell note__userName'>{note.userName}</td>
 
         <td className='table__cell'>
           <button className='icon-button table__button' onClick={handleEdit}>
