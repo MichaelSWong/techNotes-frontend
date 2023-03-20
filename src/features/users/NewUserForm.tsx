@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ROLES } from '../../config/roles';
 import { useAddNewUserMutation } from './usersApiSlice';
 
-const USER_REGEX = /^[A-Z]{3,20}$/;
+const USER_REGEX = /^[A-z]{3,20}$/;
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/;
 
 const NewUserForm = () => {
@@ -87,6 +87,7 @@ const NewUserForm = () => {
             </button>
           </div>
         </div>
+
         <label className='form__label' htmlFor='userName'>
           Username: <span className='nowrap'>[3-20 letters]</span>
         </label>

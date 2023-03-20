@@ -1,5 +1,6 @@
 import { useGetNotesQuery } from './notesApiSlice';
 import Note from './Note';
+import PlaceHolder from '../../components/PlaceHolder';
 
 const NotesList = () => {
   const {
@@ -8,24 +9,36 @@ const NotesList = () => {
     isSuccess,
     isError,
     error,
-  } = useGetNotesQuery();
+  } = useGetNotesQuery(undefined, {
+    // Useful option to refetch data (stall)
+    pollingInterval: 60000,
+    refetchOnFocus: true,
+    refetchOnMountOrArgChange: true,
+  });
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
   if (isError) {
-    //@ts-ignore
-    return <p className='errmsg'>{error?.data?.message}</p>;
+    if ('data' in error) {
+      //@ts-ignore
+      return <p className='errmsg'>{error?.data?.message}</p>;
+    }
   }
+
   let tableContent;
   if (isSuccess) {
     const { ids } = notes;
+    console.log(`NOTELIST_IDS: ${ids}`);
 
-    tableContent = ids?.length
-      ? ids.map((noteId) => <Note key={noteId} noteId={noteId} />)
-      : null;
+    tableContent = ids?.length ? (
+      ids.map((noteId) => <Note key={noteId} noteId={noteId} />)
+    ) : (
+      <PlaceHolder />
+    );
   }
+
   return (
     <table className='table table--notes'>
       <thead className='table__thead'>

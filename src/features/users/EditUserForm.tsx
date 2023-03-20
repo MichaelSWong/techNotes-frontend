@@ -4,17 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { ROLES } from '../../config/roles';
+import { UserProps } from '../../ts/interfaces/features_interfaces';
 
 const USER_REGEX = /^[A-z]{3,20}$/;
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/;
-
-interface UserProps {
-  id?: string;
-  userName: string;
-  password: string;
-  roles: string[];
-  active?: boolean;
-}
 
 interface EditUserFormProps {
   user: UserProps;
@@ -31,7 +24,7 @@ const EditUserForm = ({ user }: EditUserFormProps) => {
 
   const navigate = useNavigate();
 
-  const [userName, setUsername] = useState(user.userName);
+  const [userName, setUserName] = useState(user.userName);
   const [validUsername, setValidUsername] = useState(false);
   const [password, setPassword] = useState('');
   const [validPassword, setValidPassword] = useState(false);
@@ -49,7 +42,7 @@ const EditUserForm = ({ user }: EditUserFormProps) => {
   useEffect(() => {
     console.log(isSuccess);
     if (isSuccess || isDelSuccess) {
-      setUsername('');
+      setUserName('');
       setPassword('');
       setRoles([]);
       navigate('/dash/users');
@@ -57,7 +50,7 @@ const EditUserForm = ({ user }: EditUserFormProps) => {
   }, [isSuccess, isDelSuccess, navigate]);
 
   const onUsernameChanged = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setUsername(e.target.value);
+    setUserName(e.target.value);
   const onPasswordChanged = (e: React.ChangeEvent<HTMLInputElement>) =>
     setPassword(e.target.value);
 

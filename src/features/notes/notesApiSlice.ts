@@ -51,7 +51,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
         } else return [{ type: 'Note', id: 'LIST' }];
       },
     }),
-    addNote: builder.mutation({
+    addNewNote: builder.mutation({
       query: (initialNoteData) => ({
         url: '/notes',
         method: 'POST',
@@ -61,7 +61,7 @@ export const notesApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: [{ type: 'Note', id: 'LIST' }],
     }),
-    updateNewNote: builder.mutation({
+    updateNote: builder.mutation({
       query: (initialNoteData) => ({
         url: '/notes',
         method: 'PATH',
@@ -84,8 +84,8 @@ export const notesApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useGetNotesQuery,
-  useAddNoteMutation,
-  useUpdateNewNoteMutation,
+  useAddNewNoteMutation,
+  useUpdateNoteMutation,
   useDeleteNoteMutation,
 } = notesApiSlice;
 

@@ -9,7 +9,12 @@ const UsersList = () => {
     isSuccess,
     isError,
     error,
-  } = useGetUsersQuery();
+  } = useGetUsersQuery(undefined, {
+    // Options to refetch data
+    pollingInterval: 60000,
+    refetchOnFocus: true,
+    refetchOnMountOrArgChange: true,
+  });
 
   if (isLoading) {
     return <p>{isLoading}</p>;
@@ -24,12 +29,16 @@ const UsersList = () => {
   let tableContent;
   if (isSuccess) {
     const { ids } = users;
+
+    console.log(`USERLIST_IDS: ${ids}`);
+
     tableContent = ids?.length ? (
       ids.map((userId) => <User key={userId} userId={userId} />)
     ) : (
       <PlaceHolder />
     );
   }
+
   return (
     <>
       <table className='table table--users'>
